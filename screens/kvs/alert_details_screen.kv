@@ -1,0 +1,288 @@
+#: import utils kivy.utils
+
+<AlertDetailScreen>:
+    GridLayout:
+        cols:1
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex("#F4F5F8")
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        GridLayout:
+            cols:1
+            padding: sp(25), sp(25),sp(10) ,sp(10)
+            spacing: sp(10)
+            size_hint_y: None
+            height: sp(150)
+            minimum_height: sp(150)
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex("#F4F5F8")
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                font_size: sp(32)
+                color: utils.get_color_from_hex("#0A145A")
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+                halign: "left"
+                bold: True
+                valign: "middle"
+                text: "Alert Details"
+
+            GridLayout:
+                rows: 1
+                spacing:20
+                GridLayout:
+                    size_hint_x: None
+                    width: sp(200)
+                    minimum_width: sp(150)
+                    rows:1
+                    padding: 0,0,0,0
+                    FlatBorderButton:
+                        markup: True
+                        text: 
+                            " %s Back to dashboard "%(icon('arrow-left', None, None , 'fontawesome-FontGroup.SOLID'))\
+                            if root.backref == 'dashboard' else " %s Back to alert list "%(icon('arrow-left', None, None , 'fontawesome-FontGroup.SOLID'))
+                        on_release: root.goto_backref(self)
+                    
+
+                    
+                    
+        GridLayout:
+            rows:1
+            ScrollView:
+                GridLayout:
+                    cols:1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    AlertDetails:
+                        id: alert
+            GridLayout:
+                canvas.before:
+                    Color:
+                        #rgba: utils.get_color_from_hex("#e8e8ef") if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+                        rgba: utils.get_color_from_hex("#e8e8ef")
+                    Line:
+                        width: 4
+                        rectangle: self.x, self.y, self.width, self.height
+                id: map_box
+                cols:1
+         
+
+<AlertDetails>:
+    spacing: sp(10),sp(10)
+    padding: sp(20),sp(20),sp(20),sp(20)
+    cols:1
+    size_hint_y: None
+    height: self.minimum_height
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#e8e8ef")
+        Line:
+            width: 1.5
+            rectangle: self.x, self.y, self.width, self.height
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    Grid:
+        id: first_layer
+        spacing: sp(10), sp(20)
+        rows: 1
+        BackgroundLabel:
+            id: status
+            text: root.status
+            expired: root.expired
+        BorderLabel:
+            id: lbl_category
+            text: root.category
+        BorderLabel:
+            id: lbl_event
+            text: root.event
+
+    Grid:
+        id: second_layer
+        cols: 2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            FieldName:
+                text:"SENT"
+            FieldValue:
+                id: sent
+                text: root.sent
+                
+        Grid:
+            cols:1
+            FieldName:
+                text:"SENDER"
+            FieldValue:
+                id: sender
+                text: root.sender
+    
+    Grid:
+        id: third_layer
+        cols:2
+        size_hint_y: None
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            FieldName:
+                text:"EXPIRES"
+            FieldValue:
+                id: expires
+                text: root.expires
+        Grid:
+            cols:1
+            FieldName:
+                text:"W360CH"
+            FieldValueWrappable:
+                id: long_text
+                text: root.long_text
+
+    Grid:
+        id: fourth_layer
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            FieldName:
+                text:"LANGUAGE"
+            FieldValue:
+                id: language
+                text: root.language
+        Grid:
+            cols:1
+            FieldName:
+                text:"W90CH"
+            FieldValueWrappable:
+                id: short_text
+                text: root.short_text
+    
+    Grid:
+        id: fifth_layer
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            FieldName:
+                text:"CATEGORY"
+            FieldValue:
+                id: category
+                #text:', '.join(root.alert.category)
+                text: root.category
+        Grid:
+            cols:1
+            FieldName:
+                text:"EVENT"
+            FieldValue:
+                id: event
+                text: root.event
+    
+    Grid:
+        id: sixth_layer
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            FieldName:
+                text:"AREA"
+            FieldValue:
+                id: area_desc
+                text: root.area_desc
+        Grid:
+            cols:1
+            FieldName:
+                text:"ID"
+            FieldValue:
+                id: alert_id
+                text: root.alert_id
+    Grid:
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            
+        Grid:
+            cols:1
+            FieldName:
+                text:"Headline"
+            FieldValue:
+                id: headline
+                text: root.headline
+    
+    Grid:
+        id: seventh_layer
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            
+        Grid:
+            cols:1
+            FieldName:
+                text:"Description"
+            FieldValue:
+                id: desc
+                text: root.desc
+    
+    Grid:
+        id: eight_layer
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            
+        Grid:
+            cols:1
+            FieldName:
+                text:"Instruction"
+            FieldValue:
+                id: instruction
+                text: root.instruction
+    
+    Grid:
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            
+        Grid:
+            cols:1
+            FieldName:
+                text:"Contact"
+            FieldValue:
+                id: contact
+                text: root.contact
+    
+    Grid:
+        cols:2
+        spacing: sp(20),sp(20)
+        Grid:
+            cols:1
+            size_hint_x: 0.2
+            
+        Grid:
+            cols:1
+            FieldName:
+                text:"Web"
+            FieldValue:
+                id: web
+                text: root.web
+
+    

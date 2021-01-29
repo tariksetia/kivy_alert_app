@@ -1,0 +1,315 @@
+#: import utils kivy.utils
+#: import icon kivysome.icon
+#: import resource_find kivy.resources.resource_find
+
+<FlatBorderButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+    color: utils.get_color_from_hex("#2638C4") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint: (None,None)
+    width: self.texture_size[0] + sp(20)
+    height: self.texture_size[1] + sp(20)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#2638C4")
+        Line:
+            width: 1.5
+            rectangle: self.x, self.y, self.width, self.height
+
+<FlatButton>
+    background_normal: '' 
+    background_down: ''
+    background_disabled_normal: ''
+    background_color: root.get_back_color(self.state, self.disabled)
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint: (None,None)
+    width: self.texture_size[0] + sp(20)
+    height: self.texture_size[1] + sp(20)
+    tooltip_text: "Help Text Goes Here!!"
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height
+
+<FlatSelectionToggleButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#787BA3')
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint_y:None
+    height: self.texture_size[1] + sp(40)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height
+
+<FlatSelectionButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#787BA3')
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint_y: None
+    size_hint_x: None
+    height: self.texture_size[1] + sp(20)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height
+
+
+<FlatToggleButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#787BA3')
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint: (None,None)
+    width: self.texture_size[0] + sp(20)
+    height: self.texture_size[1] + sp(20)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height
+
+
+<SidebarButton>
+    cols:2
+    spacing: 0,0
+    canvas.before:
+        Color:
+            rgba: (1,1,1,0) if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        font_size: sp(22)
+        color: utils.get_color_from_hex("#ffffff")
+        size_hint: (None,None)
+        width: self.texture_size[0] + sp(10)
+        height: self.texture_size[1] + sp(20)
+        halign: "center"
+        bold: True
+        valign: "middle"
+        markup: True
+        text: root.icon
+    Label:
+        font_size: sp(22)
+        color: utils.get_color_from_hex("#ffffff")
+        size_hint: (None,None)
+        width: self.texture_size[0] + sp(10)
+        height: self.texture_size[1] + sp(20)
+        halign: "center"
+        bold: True
+        valign: "middle"
+        markup: True
+        text: root.label_text
+
+<Grid@GridLayout>:
+    size_hint_y: None
+    height: self.minimum_height
+    spacing: sp(5)
+
+<DashboardButtonLarge>
+    cols: 2
+    width: self.minimum_width
+    padding:sp(20),sp(20),sp(20),sp(20)
+    canvas.before:
+        Color:
+            #rgba: utils.get_color_from_hex("#e8e8ef") if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+            rgba: utils.get_color_from_hex("#e8e8ef") if self.state=='normal' else utils.get_color_from_hex(root.get_color_for_status(root.status))
+        Line:
+            width: 3
+            rectangle: self.x, self.y, self.width, self.height
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Grid:
+        cols:1
+        Grid:
+            cols:2
+            size_hint_x: 0.9
+            
+            #GridLayout:
+            #    cols:1
+            #    size_hint_x: None
+            #    width: self.minimum_width
+            #    id: 1
+                #SpinnerLabel:
+                #    id: status_icon
+                #    color: root.get_color_for_status(root.status)
+                #    icon: root.get_status_icon(root.status)
+                
+            Label:
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.height
+                width: self.texture_size[1] + sp(2)
+                halign: "left"
+                valign: "middle"
+                markup: True
+                text: "%s "%(icon(root.get_status_icon(root.status), '16sp', root.get_color_for_status(root.status), 'fontawesome-FontGroup.SOLID'))
+
+            Label:
+                font_size: sp(16)
+                color: utils.get_color_from_hex("#777CA3")
+                size_hint_y: None
+                size: self.texture_size
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+                text: root.title
+    
+        Label:
+            font_size: sp(20)
+            color: utils.get_color_from_hex("#0A145A")
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+            halign: "left"
+            valign: "middle"
+            text: root.heading
+
+        Label:
+            font_size: sp(15)
+            color: utils.get_color_from_hex("#0A145A")
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+            halign: "left"
+            valign: "middle"
+            text: root.primary
+
+        Label:
+            font_size: sp(15)
+            color: utils.get_color_from_hex("#777CA3")
+            size_hint_y: None
+            text_size: self.width, None
+            size: self.texture_size
+            halign: "left"
+            valign: "middle"
+            text: root.secondary
+    
+
+    Label:
+        size_hint_x: 0.05
+        color: utils.get_color_from_hex("#D8D9E5")
+        font_size: sp(60)
+        markup: True
+        text: "%s "%(icon("arrow-right", None, None, 'fontawesome-FontGroup.SOLID'))
+
+
+<DashboardButton>
+    cols: 2
+    padding:sp(20),sp(20),sp(20),sp(20)
+    canvas.before:
+        Color:
+            #rgba: utils.get_color_from_hex("#e8e8ef") if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+            rgba: utils.get_color_from_hex("#e8e8ef") if self.state=='normal' else utils.get_color_from_hex(root.get_color_for_status(root.status))
+        Line:
+            width: 3
+            rectangle: self.x, self.y, self.width, self.height
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Grid:
+        cols:1 
+        size_hint_x: 0.9
+        Grid:
+            cols:2
+            Label:
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.height
+                width: self.texture_size[1] + sp(2)
+                halign: "left"
+                valign: "middle"
+                markup: True
+                text: "%s "%(icon(root.get_status_icon(root.status), '16sp', root.get_color_for_status(root.status), 'fontawesome-FontGroup.SOLID'))
+            Label:
+                font_size: sp(16)
+                color: utils.get_color_from_hex("#777CA3")
+                size_hint_y: None
+                size: self.texture_size
+                text_size: self.width, None
+                halign: "left"
+                valign: "middle"
+                text: root.title
+    
+        Label:
+            font_size: sp(20)
+            color: utils.get_color_from_hex("#0A145A")
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+            halign: "left"
+            valign: "middle"
+            text: root.heading
+
+
+        Label:
+            id:  primary_text
+            color: utils.get_color_from_hex(root.get_label_color(root.status))
+            font_size: sp(15)
+            size_hint_y: None
+            size: self.texture_size
+            text_size: self.width, None
+            halign: "left"
+            valign: "middle"
+            text: root.primary
+    
+
+    Label:
+        size_hint_x: 0.1
+        color: utils.get_color_from_hex("#D8D9E5")
+        font_size: sp(48)
+        markup: True
+        text: "%s "%(icon("arrow-right", None, None, 'fontawesome-FontGroup.SOLID'))
+
+
+<FullWidthButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#787BA3')
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint_y: None
+    height: self.texture_size[1] + sp(20)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height
+
+<SettingsToggleButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: utils.get_color_from_hex('#FFFFFF') if self.state=='normal' else utils.get_color_from_hex('#787BA3')
+    color: utils.get_color_from_hex("#0B145A") if self.state=='normal' else utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(14)
+    size_hint: (1,None)
+    height: self.texture_size[1] + sp(20)
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#D8D9E5")
+        Line:
+            width: 2.5
+            rectangle: self.x, self.y, self.width, self.height

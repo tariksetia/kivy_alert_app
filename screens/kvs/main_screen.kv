@@ -1,0 +1,59 @@
+#: import icon kivysome.icon
+#: import utils kivy.utils
+#: import time time
+
+<SidebarToggleButton@ToggleButton>
+    background_normal: '' 
+    background_down: ''
+    background_color: (1,1,1,0) if self.state=='normal' else utils.get_color_from_hex('#2638C4')
+    opacity: 1 if self.state=='normal' else 1
+    color:  utils.get_color_from_hex('#FFFFFF')
+    font_size: sp(16)
+    halign: 'left'
+    size_hint_y: None
+    markup: True
+    height: self.texture_size[1] + sp(30)
+
+<Ipas>
+    cols: 2
+    GridLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: './assets/images/sidebar_back.png'
+        cols:1
+        spacing: sp(10),sp(10)
+        size_hint_x:None
+        width: sp(250)
+        
+        GridLayout:
+            cols:1
+            size_hint_y: None
+            height: sp(150)
+            padding: dp(25),dp(25),dp(25),dp(25)
+            Image:
+                id: side_img_tower
+                source:'./assets/images/tower.png'
+        
+        GridLayout:
+            cols:1
+            spacing: sp(5),sp(5)
+          
+            SidebarToggleButton:
+                group: 'sidebar'
+                text: "%s  Dashboard "%(icon('tachometer-alt', None, '#FFFFFF', 'fontawesome-FontGroup.SOLID'))
+                id: btn_dashboard
+                on_state: screen_manager.show_dashboard()
+                state:'down'
+                allow_no_selection: False
+        
+       
+            
+            
+
+    
+    GridLayout:
+        cols: 1
+        MainScreenManager:
+            id: screen_manager

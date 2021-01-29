@@ -1,0 +1,52 @@
+#: import Window kivy.core.window.Window
+
+<Dashboard>:
+    GridLayout:
+        cols: 1
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex("#F4F5F8")
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        GridLayout:
+            padding: sp(25), sp(25),sp(10) ,sp(10)
+            size_hint_y: None
+            height: sp(160)
+            minimum_height: sp(160)
+            cols:1
+            spacing: sp(5), sp(5)
+            Label:
+                font_size: sp(36)
+                color: utils.get_color_from_hex("#0A145A")
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+                halign: "left"
+                bold: True
+                valign: "middle"
+                text: "Processor Status"
+            
+            Label:
+                font_size: sp(20)
+                color: utils.get_color_from_hex("#777CA3")
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+                halign: "left"
+                valign: "middle"
+                text: "Your connection is active."
+
+        Grid:
+            cols: 1
+            padding: sp(25), 0, sp(25), sp(25)
+            spacing: sp(20),sp(20)
+            DashboardButtonLarge:
+                id: last_alert
+                title: "LATEST ALERT"
+                heading: ' '
+                primary: ' '
+                secondary: ' '
+                on_release: root.on_last_alert_click(self)
+            
+        
